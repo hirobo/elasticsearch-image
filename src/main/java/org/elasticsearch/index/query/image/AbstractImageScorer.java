@@ -43,7 +43,7 @@ public abstract class AbstractImageScorer extends Scorer {
         try {
             BytesRef bytesRef = binaryDocValues.get(docID());
             LireFeature docFeature = lireFeature.getClass().newInstance();
-            docFeature.setByteArrayRepresentation(bytesRef.bytes);
+            docFeature.setByteArrayRepresentation(bytesRef.bytes, bytesRef.offset, bytesRef.length);
 
             float distance = lireFeature.getDistance(docFeature);
             float score;
